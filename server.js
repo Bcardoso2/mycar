@@ -19,9 +19,9 @@ const routes = require('./src/routes');
 // Segurança
 app.use(helmet());
 
-// CORS - Aceitar requisições do frontend
+// CORS - Permitir TODAS as requisições
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000', 'http://localhost:3001'],
+  origin: '*',  // ✅ Aceita QUALQUER origem
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -120,16 +120,20 @@ app.listen(PORT, () => {
   console.log(`📡 Servidor rodando em: http://localhost:${PORT}`);
   console.log(`🌍 Ambiente: ${process.env.NODE_ENV || 'development'}`);
   console.log(`📝 Logs: ${process.env.NODE_ENV === 'production' ? 'combined' : 'dev'}`);
-  console.log(`✅ CORS configurado para: http://localhost:5173`);
+  console.log(`✅ CORS: Todas as origens permitidas (*)`);
+  console.log(`☁️  Cloudinary: ${process.env.CLOUDINARY_CLOUD_NAME ? 'Configurado ✅' : 'NÃO configurado ❌'}`);
+  console.log(`🗄️  Database: ${process.env.DATABASE_URL ? 'Conectado ✅' : 'NÃO configurado ❌'}`);
   console.log('\n📚 Endpoints disponíveis:');
-  console.log(`   - GET    /                     - Info da API`);
-  console.log(`   - GET    /api/health           - Health check`);
-  console.log(`   - POST   /api/auth/registro    - Registrar usuário`);
-  console.log(`   - POST   /api/auth/login       - Login`);
-  console.log(`   - GET    /api/veiculos         - Listar veículos`);
-  console.log(`   - POST   /api/veiculos         - Criar veículo`);
-  console.log(`   - GET    /api/favoritos        - Meus favoritos`);
-  console.log(`   - GET    /api/repasses         - Área de repasse (lojistas)`);
+  console.log(`   - GET    /                          - Info da API`);
+  console.log(`   - GET    /api/health                - Health check`);
+  console.log(`   - POST   /api/auth/registro         - Registrar usuário`);
+  console.log(`   - POST   /api/auth/login            - Login`);
+  console.log(`   - GET    /api/veiculos              - Listar veículos`);
+  console.log(`   - POST   /api/veiculos              - Criar veículo`);
+  console.log(`   - POST   /api/fotos/upload/:id      - Upload de foto`);
+  console.log(`   - DELETE /api/fotos/:id/:index      - Deletar foto`);
+  console.log(`   - GET    /api/favoritos             - Meus favoritos`);
+  console.log(`   - GET    /api/repasses              - Área de repasse`);
   console.log('\n✅ Servidor pronto para receber requisições!\n');
 });
 
