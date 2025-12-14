@@ -57,7 +57,8 @@ app.get('/', (req, res) => {
       veiculos: '/api/veiculos',
       fotos: '/api/fotos',
       favoritos: '/api/favoritos',
-      repasses: '/api/repasses'
+      repasses: '/api/repasses',
+      leiloes: '/api/leiloes'  // ✅ ADICIONADO
     }
   });
 });
@@ -134,6 +135,10 @@ app.listen(PORT, () => {
   console.log(`   - DELETE /api/fotos/:id/:index      - Deletar foto`);
   console.log(`   - GET    /api/favoritos             - Meus favoritos`);
   console.log(`   - GET    /api/repasses              - Área de repasse`);
+  console.log(`   - GET    /api/leiloes               - Listar leilões`);        // ✅ ADICIONADO
+  console.log(`   - GET    /api/leiloes/:id           - Detalhes do leilão`);    // ✅ ADICIONADO
+  console.log(`   - POST   /api/leiloes/propostas     - Fazer proposta`);        // ✅ ADICIONADO
+  console.log(`   - GET    /api/leiloes/propostas/minhas - Minhas propostas`);  // ✅ ADICIONADO
   console.log('\n✅ Servidor pronto para receber requisições!\n');
 });
 
