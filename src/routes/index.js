@@ -8,6 +8,7 @@ const veiculosRoutes = require('./veiculosRoutes');
 const fotosRoutes = require('./fotosRoutes');
 const favoritosRoutes = require('./favoritosRoutes');
 const repassesRoutes = require('./repassesRoutes');
+const leilaoRoutes = require('./leilaoRoutes');  // ✅ ADICIONADO
 
 // Rota de health check
 router.get('/health', (req, res) => {
@@ -32,6 +33,9 @@ router.use('/favoritos', favoritosRoutes);
 
 // Rotas de repasse (apenas lojistas)
 router.use('/repasses', repassesRoutes);
+
+// Rotas de leilão (públicas e protegidas)  // ✅ ADICIONADO
+router.use('/leiloes', leilaoRoutes);        // ✅ ADICIONADO
 
 // Rota 404
 router.use('*', (req, res) => {
