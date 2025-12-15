@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const leilaoController = require('../controllers/leilaoController');
-const authMiddleware = require('../middlewares/authMiddleware');
+const { autenticar } = require('../middlewares/authMiddleware');  // ✅ DESESTRUTURAÇÃO
 
 // ============================================
 // ROTAS PÚBLICAS
@@ -20,22 +20,22 @@ router.get('/:id', leilaoController.buscarLeilaoPorId);
 // ============================================
 
 // Fazer proposta
-router.post('/propostas', authMiddleware, leilaoController.fazerProposta);
+router.post('/propostas', autenticar, leilaoController.fazerProposta);
 
 // Listar minhas propostas
-router.get('/propostas/minhas', authMiddleware, leilaoController.minhasPropostas);
+router.get('/propostas/minhas', autenticar, leilaoController.minhasPropostas);
 
 // Cancelar proposta
-router.delete('/propostas/:id', authMiddleware, leilaoController.cancelarProposta);
+router.delete('/propostas/:id', autenticar, leilaoController.cancelarProposta);
 
 // ============================================
 // ROTAS ADMIN (REQUER ADMIN)
 // ============================================
 
 // Criar leilão
-router.post('/', authMiddleware, leilaoController.criarLeilao);
+router.post('/', autenticar, leilaoController.criarLeilao);
 
 // Atualizar status da proposta
-router.patch('/propostas/:id/status', authMiddleware, leilaoController.atualizarStatusProposta);
+router.patch('/propostas/:id/status', autenticar, leilaoController.atualizarStatusProposta);
 
 module.exports = router;
